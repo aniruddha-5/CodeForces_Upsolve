@@ -8,6 +8,7 @@ using namespace std;
 #define fr(i,a,b) for(ll i=a;i>=b;i--)
 
 #define MOD 1000000007
+#define mp make_pair
 #define pb push_back
 #define all(v) v.begin(),v.end()
 #define endl "\n"
@@ -20,24 +21,29 @@ using namespace std;
 
 void solve()
 {
-	int n,cnt=0;
+	ll n,cnt=0;
 	cin>>n;
-	int a[n];
+	ll a[n];
+	vector<pii> b;
 	for(int i=0;i<n;i++)
 	{
 		cin>>a[i];
+		b.pb(mp(a[i],i+1));
 	}
+	sort(b.begin(),b.end());
 	for(int i=0;i<n-1;i++)
 	{
 		for(int j=i+1;j<n;j++)
 		{
-			if((i+j+2)==(a[i]*a[j]))
+			if((b[i].F*b[j].F)==(b[i].S+b[j].S))
 			{
 				cnt++;
 			}
+			if((b[i].F*b[j].F)>(2*n-1)) break;
 		}
 	}
 	cout<<cnt<<endl;
+
 }
 
 int main()
